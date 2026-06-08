@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "32000",
+    "JAVA_TOOL_OPTIONS": "-Dfile.encoding=UTF-8"
+  },
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Edit",
+      "Write",
+      "MultiEdit",
+      "TodoWrite",
+      "Task",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git stash:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git checkout:*)",
+      "Bash(git pull:*)",
+      "Bash(mvn compile:*)",
+      "Bash(mvn test:*)",
+      "Bash(mvn package:*)",
+      "Bash(mvn clean:*)",
+      "Bash(mvn dependency:*)",
+      "Bash(mvn spring-boot:run:*)",
+      "Bash(mvn --version:*)",
+      "Bash(gradle:*)",
+      "Bash(./gradlew:*)",
+      "Bash(java -version:*)",
+      "Bash(java:*)",
+      "Bash(node:*)",
+      "Bash(node --version:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(pnpm:*)",
+      "Bash(yarn:*)",
+      "Bash(tsx:*)",
+      "Bash(tsc:*)",
+      "Bash(vite:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(pip:*)",
+      "Bash(pip3:*)",
+      "Bash(poetry:*)",
+      "Bash(uv:*)",
+      "Bash(pytest:*)",
+      "Bash(ruff:*)",
+      "Bash(mypy:*)",
+      "Bash(black:*)",
+      "Bash(alembic:*)",
+      "Bash(uvicorn:*)",
+      "Bash(go:*)",
+      "Bash(gofmt:*)",
+      "Bash(goimports:*)",
+      "Bash(golangci-lint:*)",
+      "Bash(cargo:*)",
+      "Bash(rustc:*)",
+      "Bash(rustfmt:*)",
+      "Bash(clippy-driver:*)",
+      "Bash(dotnet:*)",
+      "Bash(ruby:*)",
+      "Bash(bundle:*)",
+      "Bash(rubocop:*)",
+      "Bash(make:*)",
+      "Bash(ls:*)",
+      "Bash(dir:*)",
+      "Bash(cat:*)",
+      "Bash(type:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(find:*)",
+      "Bash(rg:*)",
+      "Bash(grep:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(touch:*)",
+      "Write(.claude/context/**)",
+      "Write(.claude/memory/**)",
+      "Write(.claude/state/**)",
+      "Write(.claude/rules/**)",
+      "Write(.claude/templates/**)",
+      "Write(.claude/stacks/**)",
+      "Write(.claude/project-profile.md)",
+      "Edit(.claude/context/**)",
+      "Edit(.claude/memory/**)",
+      "Edit(.claude/state/**)",
+      "Edit(.claude/rules/**)",
+      "Edit(.claude/stacks/**)",
+      "Edit(.claude/project-profile.md)",
+      "Bash(mkdir -p .claude/**:*)",
+      "Bash(mkdir -p src/**:*)",
+      "Bash(mkdir -p docs/**:*)",
+      "Bash(mkdir -p tests/**:*)",
+      "Bash(mkdir -p cmd/**:*)",
+      "Bash(mkdir -p internal/**:*)",
+      "Bash(mkdir -p app/**:*)",
+      "Bash(node *.mjs:*)",
+      "Bash(node *.js:*)",
+      "Bash(python merge-batch-graphs.py:*)",
+      "Bash(python merge-knowledge-graph.py:*)",
+      "Bash(python parse-knowledge-base.py:*)",
+      "Bash(python extract-domain-context.py:*)",
+      "Bash(python merge-subdomain-graphs.py:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm build:*)",
+      "Write(.understand-anything/**)",
+      "Edit(.understand-anything/**)",
+      "Read(.understand-anything/**)",
+      "Read(.claude/plugins/**)",
+      "Bash(git rev-parse:*)",
+      "Bash(git diff-tree:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git rebase:*)",
+      "Bash(git merge:*)",
+      "Bash(mvn install:*)",
+      "Bash(mvn deploy:*)",
+      "Bash(mvn release:*)",
+      "Bash(npm publish:*)",
+      "Bash(pnpm publish:*)",
+      "Bash(yarn publish:*)",
+      "Bash(poetry publish:*)",
+      "Bash(twine upload:*)",
+      "Bash(cargo publish:*)",
+      "Bash(gh release:*)",
+      "Bash(docker:*)",
+      "Bash(docker-compose:*)",
+      "Bash(docker push:*)",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "deny": [
+      "Bash(rm -rf /:*)",
+      "Bash(rm -rf ~:*)",
+      "Bash(rm -rf $HOME:*)",
+      "Bash(rd /s /q C:\\:*)",
+      "Bash(format:*)",
+      "Bash(sudo:*)",
+      "Bash(git push --force origin main:*)",
+      "Bash(git push --force origin master:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(curl * | sh:*)",
+      "Bash(curl * | bash:*)",
+      "Bash(wget * | sh:*)",
+      "Bash(*Invoke-Expression*Invoke-WebRequest*)",
+      "Bash(iex*)",
+      "Bash(*iwr*)",
+      "Read(.env)",
+      "Read(.env.local)",
+      "Read(.env.production)",
+      "Read(**/.env)",
+      "Read(**/secrets/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/id_rsa)",
+      "Read(**/id_ed25519)",
+      "Read(**/credentials*.json)",
+      "Edit(.env*)",
+      "Edit(pom.xml)",
+      "Edit(package.json)",
+      "Edit(pyproject.toml)",
+      "Edit(go.mod)",
+      "Edit(Cargo.toml)"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/session-start.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "[ -f .understand-anything/config.json ] && grep -q '\"autoUpdate\".*true' .understand-anything/config.json && [ -f .understand-anything/meta.json ] && [ -f .understand-anything/knowledge-graph.json ] && [ \"$(node -p \\\"JSON.parse(require('fs').readFileSync('.understand-anything/meta.json','utf8')).gitCommitHash\\\")\" != \"$(git rev-parse HEAD 2>/dev/null)\" ] && echo \"[understand-anything] Knowledge graph is stale. Read ${CLAUDE_PROJECT_DIR}/.claude/plugins/understand-anything/hooks/auto-update-prompt.md and execute its instructions.\" || true",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/pre-write-guard.sh",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/pre-bash-firewall.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/pre-delegate-validate.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/post-write-format.sh",
+            "timeout": 60,
+            "async": false
+          },
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/log-change.sh",
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/log-bash.sh",
+            "async": true
+          },
+          {
+            "type": "command",
+            "command": "printf '%s' \"$TOOL_INPUT\" | grep -qE 'git\\s+(commit|merge|cherry-pick|rebase)' && [ -f .understand-anything/config.json ] && grep -q '\"autoUpdate\".*true' .understand-anything/config.json && [ -f .understand-anything/knowledge-graph.json ] && echo \"[understand-anything] Commit detected with auto-update enabled. Read ${CLAUDE_PROJECT_DIR}/.claude/plugins/understand-anything/hooks/auto-update-prompt.md and execute its instructions.\" || true",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/subagent-handoff.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/stop-checkpoint.sh",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

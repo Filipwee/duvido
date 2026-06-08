@@ -1,0 +1,13 @@
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Arquivos de estado do orquestrador — evitar conflitos em merges entre feature branches.
+# Estratégia "ours": ao fazer merge, mantém a versão da branch DESTINO (quem recebe o merge).
+# Decidido na retro 2026-05-27 — histórico de bash-log mostrou `git checkout --theirs` em arquivos de state.
+# Para aplicar globalmente, rodar uma vez:  git config merge.ours.driver true
+.claude/state/bash-log.md merge=ours
+.claude/state/handoff-log.md merge=ours
+.claude/state/dashboard.md merge=ours
+.claude/state/current-plan.md merge=ours

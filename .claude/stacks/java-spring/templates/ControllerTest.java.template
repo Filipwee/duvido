@@ -1,0 +1,74 @@
+package com.example.app.MODULO;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.UUID;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@WebMvcTest(NomeController.class)
+@DisplayName("NomeController")
+class NomeControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @MockBean
+    private NomeService service;
+
+    @Test
+    @DisplayName("POST /api/v1/RECURSO deve retornar 201 com recurso criado")
+    void deveCriarComSucesso() throws Exception {
+        // Given
+        NomeRequest request = /* TODO: construir request válido */;
+        NomeResponse response = /* TODO: construir response esperada */;
+        when(service.create(any())).thenReturn(response);
+
+        // When / Then
+        mockMvc.perform(post("/api/v1/RECURSO")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+            .andExpect(status().isCreated())
+            .andExpect(jsonPath("$.id").exists());
+    }
+
+    @Test
+    @DisplayName("POST /api/v1/RECURSO deve retornar 400 com body inválido")
+    void deveRetornar400ComBodyInvalido() throws Exception {
+        // Given — request vazio ou com campos inválidos
+        String invalidBody = "{}";
+
+        // When / Then
+        mockMvc.perform(post("/api/v1/RECURSO")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(invalidBody))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("GET /api/v1/RECURSO/{id} deve retornar 404 quando não existe")
+    void deveRetornar404QuandoNaoExiste() throws Exception {
+        // Given
+        UUID id = UUID.randomUUID();
+        when(service.findById(id)).thenThrow(new ResourceNotFoundException("NOME: " + id));
+
+        // When / Then
+        mockMvc.perform(get("/api/v1/RECURSO/{id}", id))
+            .andExpect(status().isNotFound());
+    }
+
+    // TODO(tester): adicionar testes para list, update e delete
+}

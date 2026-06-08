@@ -1,0 +1,66 @@
+package com.example.app.MODULO;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
+import java.util.UUID;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+@DisplayName("NomeService")
+class NomeServiceTest {
+
+    @Mock
+    private NomeRepository repository;
+
+    @Mock
+    private NomeMapper mapper;
+
+    @InjectMocks
+    private NomeServiceImpl service;
+
+    @Test
+    @DisplayName("deve criar NOME com sucesso")
+    void deveCriarComSucesso() {
+        // Given
+        NomeRequest request = /* TODO: construir request */;
+        NomeEntidade entity = /* TODO: construir entity */;
+        NomeEntidade saved = /* TODO: construir saved */;
+        NomeResponse expected = /* TODO: construir response */;
+
+        when(mapper.toEntity(request)).thenReturn(entity);
+        when(repository.save(entity)).thenReturn(saved);
+        when(mapper.toResponse(saved)).thenReturn(expected);
+
+        // When
+        NomeResponse result = service.create(request);
+
+        // Then
+        assertThat(result).isEqualTo(expected);
+        verify(repository).save(entity);
+    }
+
+    @Test
+    @DisplayName("deve lançar ResourceNotFoundException quando id não existe")
+    void deveLancarNotFoundQuandoNaoExiste() {
+        // Given
+        UUID id = UUID.randomUUID();
+        when(repository.findById(id)).thenReturn(Optional.empty());
+
+        // When / Then
+        assertThatThrownBy(() -> service.findById(id))
+            .isInstanceOf(ResourceNotFoundException.class)
+            .hasMessageContaining(id.toString());
+    }
+
+    // TODO(tester): adicionar testes para update, delete e casos de borda
+}

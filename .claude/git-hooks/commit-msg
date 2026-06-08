@@ -1,0 +1,47 @@
+#!/bin/bash
+# commit-msg — valida formato Conventional Commits
+
+COMMIT_MSG_FILE="$1"
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+# Ignora merge commits e fixup
+if echo "$COMMIT_MSG" | grep -qE "^(Merge|Revert|fixup!|squash!)"; then
+    exit 0
+fi
+
+# Padrão Conventional Commits
+PATTERN="^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\(.+\))?: .{1,72}$"
+
+if ! echo "$COMMIT_MSG" | grep -qE "$PATTERN"; then
+    echo ""
+    echo "🔴 COMMIT BLOQUEADO: formato inválido"
+    echo ""
+    echo "Formato esperado: <tipo>(<escopo>): <descrição>"
+    echo ""
+    echo "Tipos válidos:"
+    echo "  feat     — nova funcionalidade"
+    echo "  fix      — correção de bug"
+    echo "  docs     — documentação"
+    echo "  refactor — refatoração sem mudança de comportamento"
+    echo "  test     — testes"
+    echo "  chore    — tarefas de manutenção"
+    echo "  perf     — melhorias de performance"
+    echo "  ci       — CI/CD"
+    echo ""
+    echo "Exemplos válidos:"
+    echo "  feat(transaction): adiciona endpoint de criação"
+    echo "  fix(auth): corrige validação de JWT expirado"
+    echo "  test(service): adiciona cobertura do TransactionService"
+    echo ""
+    echo "Seu commit: $COMMIT_MSG"
+    exit 1
+fi
+
+# Avisa se a descrição for muito curta (< 10 chars)
+DESC=$(echo "$COMMIT_MSG" | sed 's/^[^:]*: //')
+if [ ${#DESC} -lt 10 ]; then
+    echo "⚠️  AVISO: descrição muito curta. Seja mais específico."
+fi
+
+echo "✅ Commit-msg OK"
+exit 0

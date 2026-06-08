@@ -1,0 +1,62 @@
+#!/bin/bash
+# pre-commit — bloqueia commits problemáticos
+# Instalado via install.bat em .git/hooks/pre-commit
+
+# 1. Bloqueia commit em main/master direto
+BRANCH=$(git branch --show-current)
+if [[ "$BRANCH" == "main" || "$BRANCH" == "master" ]]; then
+    echo "🔴 BLOQUEADO: commit direto em $BRANCH não permitido."
+    echo "   Crie uma branch: git checkout -b feature/sua-feature"
+    exit 1
+fi
+
+# 2. Bloqueia secrets hardcoded
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM)
+
+SECRET_PATTERNS=(
+    "password\s*=\s*['\"][^'\"]\+['\"]"
+    "secret\s*=\s*['\"][^'\"]\+['\"]"
+    "api.key\s*=\s*['\"][^'\"]\+['\"]"
+    "token\s*=\s*['\"][^'\"]\+['\"]"
+    "BEGIN RSA PRIVATE KEY"
+    "BEGIN PRIVATE KEY"
+    "AKIA[0-9A-Z]{16}"
+)
+
+for file in $STAGED_FILES; do
+    # Pula arquivos de exemplo, test e os próprios scripts de hook
+    # (que contêm os padrões de detecção de secret, gerando falso positivo).
+    if [[ "$file" == *"example"* ]] || [[ "$file" == *"test"* ]] || [[ "$file" == *"Test"* ]] \
+       || [[ "$file" == .claude/git-hooks/* ]] || [[ "$file" == .claude/hooks/* ]]; then
+        continue
+    fi
+
+    for pattern in "${SECRET_PATTERNS[@]}"; do
+        if git diff --cached "$file" | grep -iE "$pattern" &>/dev/null; then
+            echo "🔴 BLOQUEADO: possível secret detectado em $file"
+            echo "   Padrão: $pattern"
+            echo "   Use variáveis de ambiente ou application.yml com \${ENV_VAR}"
+            exit 1
+        fi
+    done
+done
+
+# 3. Bloqueia arquivos de ambiente
+for file in $STAGED_FILES; do
+    if [[ "$file" == ".env" ]] || [[ "$file" == ".env."* ]]; then
+        echo "🔴 BLOQUEADO: .env não deve ser commitado."
+        echo "   Adicione ao .gitignore"
+        exit 1
+    fi
+done
+
+# 4. Bloqueia target/ do Maven
+for file in $STAGED_FILES; do
+    if [[ "$file" == target/* ]]; then
+        echo "🔴 BLOQUEADO: arquivo de build (target/) não deve ser commitado: $file"
+        exit 1
+    fi
+done
+
+echo "✅ Pre-commit OK"
+exit 0

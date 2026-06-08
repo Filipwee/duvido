@@ -1,0 +1,60 @@
+package com.example.app.MODULO;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.UUID;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+@Transactional(readOnly = true)
+public class NomeServiceImpl implements NomeService {
+
+    private final NomeRepository repository;
+    private final NomeMapper mapper;
+
+    @Override
+    @Transactional
+    public NomeResponse create(NomeRequest request) {
+        log.info("Criando NOME: {}", request);
+        NomeEntidade entity = mapper.toEntity(request);
+        NomeEntidade saved = repository.save(entity);
+        return mapper.toResponse(saved);
+    }
+
+    @Override
+    public NomeResponse findById(UUID id) {
+        return repository.findById(id)
+            .map(mapper::toResponse)
+            .orElseThrow(() -> new ResourceNotFoundException("NOME não encontrado: " + id));
+    }
+
+    @Override
+    public Page<NomeResponse> list(Pageable pageable) {
+        return repository.findAll(pageable).map(mapper::toResponse);
+    }
+
+    @Override
+    @Transactional
+    public NomeResponse update(UUID id, NomeRequest request) {
+        NomeEntidade entity = repository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("NOME não encontrado: " + id));
+        mapper.updateEntity(request, entity);
+        return mapper.toResponse(entity);
+    }
+
+    @Override
+    @Transactional
+    public void delete(UUID id) {
+        if (!repository.existsById(id)) {
+            throw new ResourceNotFoundException("NOME não encontrado: " + id);
+        }
+        repository.deleteById(id);
+        log.info("NOME deletado: id={}", id);
+    }
+}

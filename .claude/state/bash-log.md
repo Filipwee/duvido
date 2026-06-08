@@ -1,0 +1,41 @@
+# BASH LOG
+Atualizado: 2026-05-29 (template inicial)
+
+(vazio — projeto novo)
+- 2026-06-08 15:13:23 | `curl -s \`
+- 2026-06-08 15:13:34 | `cd /tmp && curl -s \`
+- 2026-06-08 15:13:49 | `cd /tmp && grep -oE '\`
+- 2026-06-08 15:14:03 | `cd /tmp && grep -oE '\`
+- 2026-06-08 15:14:14 | `cd /tmp && grep -oE '\`
+- 2026-06-08 15:14:28 | `cd /tmp && grep -oE 'a\\.screen===?\`
+- 2026-06-08 15:19:07 | `cd /tmp && for kw in \`
+- 2026-06-08 15:19:24 | `cd /tmp && echo \`
+- 2026-06-08 15:19:43 | `cd /tmp && echo \`
+- 2026-06-08 15:20:04 | `cd /tmp && echo \`
+- 2026-06-08 15:20:23 | `cd /tmp && echo \`
+- 2026-06-08 15:25:40 | `cd /tmp && curl -s \`
+- 2026-06-08 15:25:52 | `cd /tmp && curl -s \`
+- 2026-06-08 15:26:05 | `cd /tmp && curl -s \`
+- 2026-06-08 15:27:23 | `ls -la /tmp/duvido.js /tmp/categories.json 2>&1; echo \`
+- 2026-06-08 15:27:36 | `cd /tmp && node extract.js`
+- 2026-06-08 15:28:20 | `cd /c/Users/filip/projetos && rm -rf _duvido_scaffold && npx --yes create-next-app@latest _duvido_scaffold --typescript --tailwind --app --eslint --src-dir --import-alias \`
+- 2026-06-08 15:31:51 | `cd /c/Users/filip/projetos && rm -rf duvido-scaffold && npx --yes create-next-app@latest duvido-scaffold --typescript --tailwind --app --eslint --src-dir --import-alias \`
+- 2026-06-08 15:31:58 | `cd /c/Users/filip/projetos/duvido-scaffold && echo \`
+- 2026-06-08 15:35:18 | `cd /c/Users/filip/projetos\nS=duvido-scaffold\nD=duvido\n# move app code + config (keep project's CLAUDE.md, DISCOVERY.md, .claude, etc.)\ncp -r $S/src $D/\ncp -r $S/public $D/\ncp -r $S/node_modules $D/\ncp $S/next.config.ts $S/tsconfig.json $S/postcss.config.mjs $S/eslint.config.mjs $S/next-env.d.ts $S/package.json $S/package-lock.json $D/\n# merge .gitignore: keep existing orchestrator one, append next scaffold entries deduped\ncat $S/.gitignore >> $D/.gitignore\necho \`
+- 2026-06-08 15:37:36 | `cd /c/Users/filip/projetos/duvido\n# wait loop for background copy to finish (check marker files exist + node_modules populated)\nfor i in $(seq 1 60); do\n  if [ -f package.json ] && [ -d node_modules/next ] && [ -f next-env.d.ts ]; then echo \`
+- 2026-06-08 15:47:29 | `for f in package.json package-lock.json next.config.ts tsconfig.json postcss.config.mjs eslint.config.mjs next-env.d.ts; do printf \`
+- 2026-06-08 15:48:11 | `cd /c/Users/filip/projetos && rm -rf duvido-scaffold _duvido_scaffold && echo \`
+- 2026-06-08 15:49:33 | `npm install zustand framer-motion 2>&1 | tail -5 && echo \`
+- 2026-06-08 15:50:02 | `npm install -D vitest @vitejs/plugin-react jsdom @testing-library/react @testing-library/jest-dom @testing-library/user-event @vitest/coverage-v8 vite-tsconfig-paths 2>&1 | tail -4 && echo \`
+- 2026-06-08 15:50:19 | `npx --yes shadcn@latest init --base-color slate --yes 2>&1 | tail -30`
+- 2026-06-08 15:50:26 | `npx --yes shadcn@latest init --help 2>&1 | head -40`
+- 2026-06-08 15:50:36 | `npx --yes shadcn@latest init -t next -b radix --css-variables --no-monorepo --force --yes 2>&1 | tail -30`
+- 2026-06-08 15:50:46 | `npx --yes shadcn@latest init -t next -p base-nova -b radix --css-variables --no-monorepo --force --yes 2>&1 | tail -30`
+- 2026-06-08 15:51:22 | `npx --yes shadcn@latest init -t next -p nova -b radix --css-variables --no-monorepo --force --yes 2>&1 | tail -30`
+- 2026-06-08 15:51:33 | `npx --yes shadcn@latest add card dialog --yes 2>&1 | tail -15`
+- 2026-06-08 15:52:21 | `cd /c/Users/filip/projetos/duvido\nnpm pkg set name=\`
+- 2026-06-08 15:52:35 | `cd /c/Users/filip/projetos/duvido\nnpm pkg delete dependencies.shadcn\nnpm pkg set devDependencies.shadcn=\`
+- 2026-06-08 15:58:06 | `cd /c/Users/filip/projetos/duvido\ngit init -q\ngit config core.autocrlf false\ngit config core.eol lf\ngit config core.encoding utf-8\nnpx --yes husky init 2>&1 | tail -3\necho \`
+- 2026-06-08 15:59:02 | `npm run typecheck 2>&1 | tail -15`
+- 2026-06-08 15:59:22 | `npm run lint 2>&1 | tail -20`
+- 2026-06-08 15:59:41 | `npm run lint 2>&1 | tail -15`

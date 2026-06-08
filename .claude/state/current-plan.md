@@ -1,16 +1,22 @@
 # Plano Atual
-Atualizado: 2026-05-29 (template inicial)
+Atualizado: 2026-06-08
 
-Status: vazio (aguardando primeiro pedido)
+Status: walking skeleton jogável entregue.
 
 ## TASK ativa
 (nenhuma)
 
-## Backlog
-(vazio)
+## Concluídas
+- TASK-001 — Camada de domínio (tipos, 510 categorias, sorteio) — done
+- TASK-002 — 4 telas do jogo + store Zustand + testes + smoke E2E — done
+
+## Backlog (candidatos)
+- Deploy na Vercel (`/deploy`)
+- Tema visual festivo (cores, fundo) além do shadcn neutro
+- Filtro/gestão de categorias
 
 ## Bloqueios
 (nenhum)
 
 ## Próximo passo prático
-Usuário descreve o projeto/feature → Viktor decide a skill ou inicia Discovery.
+Usuário escolhe o próximo passo. Base funcional e testada está pronta.

@@ -9,8 +9,8 @@ const DEFAULT_PREFERENCES: Preferences = {
   soundEnabled: true,
 };
 
-/** Threshold (in seconds) below which the timer enters its "urgent" visual state. */
-export const URGENT_THRESHOLD_SECONDS = 10;
+/** Threshold (in seconds) below which the timer turns dramatic (visual + sound). */
+export const URGENT_THRESHOLD_SECONDS = 15;
 
 interface GameState {
   /** Currently rendered screen. */

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Pause, Play } from "lucide-react";
 
 import { useGameStore, URGENT_THRESHOLD_SECONDS } from "@/lib/store/game-store";
-import { playTimeUp } from "@/lib/sound";
+import { playAlarm, playTick } from "@/lib/sound";
 import { cn } from "@/lib/utils";
 
 import { GameButton } from "./GameButton";
@@ -28,26 +28,37 @@ export function TimerScreen() {
   const revealGabarito = useGameStore((state) => state.revealGabarito);
   const soundEnabled = useGameStore((state) => state.preferences.soundEnabled);
 
-  // Drive the countdown while running.
+  // Drive the countdown while running, ticking the clock each second.
   React.useEffect(() => {
     if (!isRunning) {
       return;
     }
-    const interval = window.setInterval(() => tick(), 1000);
+    const interval = window.setInterval(() => {
+      // Read fresh state so the tic-tac matches the second being counted.
+      const { timeLeft: current, preferences } = useGameStore.getState();
+      // Tick only while seconds remain; the final second is the alarm's job.
+      if (preferences.soundEnabled && current > 1) {
+        playTick({
+          urgent: current <= URGENT_THRESHOLD_SECONDS,
+          high: current % 2 === 0,
+        });
+      }
+      tick();
+    }, 1000);
     return () => window.clearInterval(interval);
   }, [isRunning, tick]);
 
-  // React to the timer hitting zero: buzz + vibrate.
+  // React to the timer hitting zero: the big "triiimm" + a vibration.
   const reachedZero = timeLeft === 0;
   React.useEffect(() => {
     if (!reachedZero) {
       return;
     }
     if (soundEnabled) {
-      playTimeUp();
+      playAlarm();
     }
     if (typeof navigator !== "undefined" && "vibrate" in navigator) {
-      navigator.vibrate?.(400);
+      navigator.vibrate?.([0, 200, 80, 200, 80, 400]);
     }
   }, [reachedZero, soundEnabled]);
 

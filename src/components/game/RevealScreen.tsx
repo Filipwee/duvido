@@ -3,10 +3,11 @@
 import * as React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { Button } from "@/components/ui/button";
 import { pickRevealPhrase } from "@/lib/game";
 import { useGameStore } from "@/lib/store/game-store";
 import type { Category } from "@/types/game";
+
+import { GameButton } from "./GameButton";
 
 /** Delay before the category name appears, in milliseconds. */
 const SUSPENSE_MS = 1500;
@@ -34,36 +35,49 @@ function RevealContent({ category, onStart }: RevealContentProps) {
   }, [revealed]);
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-12 p-6 text-center">
-      <p aria-live="polite" className="text-muted-foreground text-2xl font-medium">
+    <div className="flex flex-1 flex-col items-center justify-center gap-10 p-6 text-center">
+      <motion.p
+        aria-live="polite"
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 1.5, repeat: revealed ? 0 : Infinity }}
+        className="font-heading text-party-muted text-2xl font-medium"
+      >
         {phrase}
-      </p>
+      </motion.p>
 
-      <div className="flex min-h-32 items-center justify-center">
+      <div className="flex min-h-44 w-full max-w-md items-center justify-center">
         <AnimatePresence>
           {revealed && (
-            <motion.h2
-              initial={{ opacity: 0, scale: 0.6, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ type: "spring", stiffness: 200, damping: 18 }}
-              aria-live="assertive"
-              className="text-foreground line-clamp-2 max-w-md text-[clamp(2rem,9vw,3.5rem)] leading-tight font-extrabold"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5, rotate: -8, y: 20 }}
+              animate={{ opacity: 1, scale: 1, rotate: -2, y: 0 }}
+              transition={{ type: "spring", stiffness: 200, damping: 16 }}
+              className="from-party-pink to-party-purple w-full rounded-3xl bg-gradient-to-br p-8 shadow-[0_10px_0_rgba(0,0,0,0.25)] ring-4 ring-white/20"
             >
-              {category.name}
-            </motion.h2>
+              <span className="mb-2 block text-xs font-bold tracking-[0.2em] text-white/70 uppercase">
+                A categoria é
+              </span>
+              <h2
+                aria-live="assertive"
+                className="font-heading line-clamp-3 text-[clamp(2rem,8vw,3.25rem)] leading-tight font-bold text-white"
+              >
+                {category.name}
+              </h2>
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
 
       {revealed && (
-        <Button
-          ref={startButtonRef}
-          size="lg"
-          onClick={onStart}
-          className="min-h-14 w-full max-w-sm text-lg font-semibold"
+        <motion.div
+          initial={{ y: 16, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className="w-full max-w-sm"
         >
-          Iniciar timer
-        </Button>
+          <GameButton ref={startButtonRef} variant="cyan" size="lg" onClick={onStart}>
+            Iniciar timer
+          </GameButton>
+        </motion.div>
       )}
     </div>
   );

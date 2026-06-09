@@ -21,7 +21,7 @@ describe("pickCategory", () => {
   });
 
   it("never returns the excluded category when alternatives exist", () => {
-    const excluded = CATEGORIES[0];
+    const excluded = CATEGORIES[0]!;
     // rng=0 would normally select index 0 of the filtered pool, not the excluded one.
     const category = pickCategory({ excludeName: excluded.name, rng: () => 0 });
     expect(category.name).not.toBe(excluded.name);

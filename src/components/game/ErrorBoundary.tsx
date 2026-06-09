@@ -31,8 +31,12 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
     if (this.state.hasError) {
       return (
         <div className="flex flex-1 flex-col items-center justify-center gap-6 p-6 text-center">
-          <p className="text-foreground text-lg">Algo deu errado. Recarregue a página.</p>
-          <Button size="lg" onClick={this.handleReload} className="min-h-14">
+          <p className="text-lg font-medium text-white">Algo deu errado. Recarregue a página.</p>
+          <Button
+            size="lg"
+            onClick={this.handleReload}
+            className="bg-party-amber hover:bg-party-amber/90 min-h-14 rounded-xl font-semibold text-purple-950"
+          >
             Recarregar
           </Button>
         </div>

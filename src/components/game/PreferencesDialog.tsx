@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import { TIMER_DURATIONS } from "@/lib/game";
 import { useGameStore } from "@/lib/store/game-store";
+import { cn } from "@/lib/utils";
 
 /** Home-screen settings dialog: timer duration + sound toggle (persisted). */
 export function PreferencesDialog() {
@@ -25,14 +26,18 @@ export function PreferencesDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="lg" className="min-h-14 gap-2">
-          <Settings aria-hidden="true" />
-          Preferências
+        <Button
+          variant="ghost"
+          size="icon-lg"
+          aria-label="Preferências"
+          className="rounded-full text-white hover:bg-white/15 hover:text-white"
+        >
+          <Settings className="size-6" aria-hidden="true" />
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Preferências</DialogTitle>
+          <DialogTitle className="font-heading text-2xl">Preferências</DialogTitle>
           <DialogDescription>
             Ajuste o tempo do timer e o som. Salvo neste dispositivo.
           </DialogDescription>
@@ -40,7 +45,7 @@ export function PreferencesDialog() {
 
         <div className="flex flex-col gap-6 py-2">
           <fieldset className="flex flex-col gap-2">
-            <legend className="mb-1 text-sm font-medium">Tempo do timer</legend>
+            <legend className="mb-2 text-sm font-semibold">Tempo do timer</legend>
             <div className="flex flex-wrap gap-2">
               {TIMER_DURATIONS.map((duration) => {
                 const selected = preferences.duration === duration;
@@ -51,7 +56,10 @@ export function PreferencesDialog() {
                     variant={selected ? "default" : "outline"}
                     aria-pressed={selected}
                     onClick={() => setDuration(duration)}
-                    className="min-h-14 flex-1"
+                    className={cn(
+                      "min-h-14 flex-1 rounded-xl text-base font-semibold",
+                      selected && "ring-party-amber ring-2",
+                    )}
                   >
                     {duration}s
                   </Button>
@@ -61,15 +69,15 @@ export function PreferencesDialog() {
           </fieldset>
 
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium">Som</span>
+            <span className="text-sm font-semibold">Som</span>
             <Button
               type="button"
-              variant="ghost"
+              variant="outline"
               size="lg"
               aria-pressed={preferences.soundEnabled}
               aria-label={preferences.soundEnabled ? "Desativar som" : "Ativar som"}
               onClick={toggleSound}
-              className="min-h-14 gap-2"
+              className="min-h-14 gap-2 rounded-xl"
             >
               {preferences.soundEnabled ? (
                 <Volume2 aria-hidden="true" />
@@ -83,7 +91,7 @@ export function PreferencesDialog() {
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline" size="lg" className="min-h-14">
+            <Button size="lg" className="min-h-14 rounded-xl font-semibold">
               Fechar
             </Button>
           </DialogClose>

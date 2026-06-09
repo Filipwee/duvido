@@ -142,3 +142,6 @@ next-env.d.ts
 # Allow committing the env template
 # ============================================================
 !.env.example
+
+# Local screenshot captures
+shots/

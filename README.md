@@ -44,3 +44,7 @@ npm run dev      # http://localhost:3000
 
 Configurado para **Vercel**: deploy automático a cada push na `main` e preview
 por pull request.
+
+## Licença
+
+[MIT](./LICENSE) © Filipe Motta

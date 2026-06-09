@@ -1,5 +1,7 @@
 # Duvido! 🎉
 
+### 👉 [Jogar agora em **duvido.fun**](https://duvido.fun)
+
 Facilitador do **Jogo do Duvido** para festas presenciais. O app sorteia uma
 categoria, cria suspense, roda um timer cheio de drama e revela o gabarito —
 toda a brincadeira social (dizer as respostas em voz alta e gritar **"DUVIDO!"**)

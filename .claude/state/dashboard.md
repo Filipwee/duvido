@@ -2,7 +2,8 @@
 Atualizado: 2026-06-08
 
 ## Status geral
-🟢 Walking skeleton jogável entregue — as 4 telas do Jogo do Duvido funcionam fim-a-fim.
+🟢 Em produção: https://duvido.fun (Vercel, deploy automático na `main`).
+Repo: https://github.com/Filipwee/duvido (MIT).
 
 ## Projeto ativo
 - **Nome:** jogo-do-duvido (facilitador de jogo de festa presencial)

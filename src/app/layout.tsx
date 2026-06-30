@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fredoka, Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { PoweredByClampFloating } from "@/components/PoweredByClamp";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -37,6 +38,7 @@ export default function RootLayout({
     >
       <body className="text-party-fg flex min-h-full flex-col">
         {children}
+        <PoweredByClampFloating />
         <Analytics />
       </body>
     </html>

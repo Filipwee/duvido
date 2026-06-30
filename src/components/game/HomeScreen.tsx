@@ -7,6 +7,8 @@ import { categoryCount } from "@/lib/game";
 import { useGameStore } from "@/lib/store/game-store";
 import { playClick } from "@/lib/sound";
 
+import { PoweredByClamp } from "@/components/PoweredByClamp";
+
 import { GameButton } from "./GameButton";
 import { PreferencesDialog } from "./PreferencesDialog";
 
@@ -61,6 +63,10 @@ export function HomeScreen() {
           Sorteie · cronometre · grite <span className="text-party-pink font-bold">DUVIDO!</span>
         </p>
       </motion.div>
+
+      <div className="absolute inset-x-0 bottom-5 flex justify-center">
+        <PoweredByClamp />
+      </div>
     </div>
   );
 }
